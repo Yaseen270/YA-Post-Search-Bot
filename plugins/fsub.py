@@ -31,10 +31,10 @@ async def f_sub_cmd(bot, message):
        c_link = chat.invite_link
        g_link = group.invite_link       
     except Exception as e:
-       text = f"❌ <b>Error:</b> `{str(e)}`\n\n<b>Make sure I'm admin in that channel & this group with all permissions</b>"
+       text = f"❌ <b>Error:</b> `{str(e)}`\n\n<b>নিশ্চিত করুন যে আমি সেই চ্যানেল এবং এই গ্রুপের সমস্ত অনুমতি সহ অ্যাডমিন।</b>"
        return await m.edit(text)
     await update_group(message.chat.id, {"f_sub":f_sub})
-    await m.edit(f"✅ <b>Successfully Attached ForceSub to [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
+    await m.edit(f"✅ <b>সফলভাবে ForceSub সংযুক্ত করা হয়েছে [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
     text = f"#NewFsub\n\nUser: {message.from_user.mention}\nGroup: [{group.title}]({g_link})\nChannel: [{chat.title}]({c_link})"
     await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 
@@ -54,17 +54,17 @@ async def nf_sub_cmd(bot, message):
     if bool(verified)==False:
        return await m.edit("<b>This chat is not verified!\nuse /verify</b>")        
     if bool(f_sub)==False:
-       return await m.edit("<b>This chat is currently don't have any FSub\nuse /fsub</b>")        
+       return await m.edit("<b>এই চ্যাটে বর্তমানে কোনও FSub নেই।\nuse /fsub</b>")        
     try:
        chat   = await bot.get_chat(f_sub)
        group  = await bot.get_chat(message.chat.id)
        c_link = chat.invite_link
        g_link = group.invite_link       
     except Exception as e:
-       text = f"❌ <b>Error:</b> `{str(e)}`\n\n<b>Make sure I'm admin in that channel & this group with all permissions</b>"
+       text = f"❌ <b>Error:</b> `{str(e)}`\n\n<b>নিশ্চিত করুন যে আমি সেই চ্যানেল এবং এই গ্রুপের সমস্ত অনুমতি সহ অ্যাডমিন।</b>"
        return await m.edit(text)
     await update_group(message.chat.id, {"f_sub":False})
-    await m.edit(f"✅ <b>Successfully removed FSub from [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
+    await m.edit(f"✅ <b>থেকে FSub সফলভাবে সরানো হয়েছে [{chat.title}]({c_link})!</b>", disable_web_page_preview=True)
     text = f"#RemoveFsub\n\nUser: {message.from_user.mention}\nGroup: [{group.title}]({g_link})\nChannel: [{chat.title}]({c_link})"
     await bot.send_message(chat_id=LOG_CHANNEL, text=text)
 

@@ -52,7 +52,7 @@ async def main(bot: Client, message: Message):
         await message.reply(strings['already_logged_in'])
         return 
     user_id = int(message.from_user.id)
-    phone_number_msg = await bot.ask(chat_id=user_id, text="<b>Please send your phone number which includes country code</b>\n<b>Example:</b> <code>+13124562345, +9171828181889</code>")
+    phone_number_msg = await bot.ask(chat_id=user_id, text="<b>আপনার ফোন নম্বরটি পাঠান যাতে দেশের কোড অন্তর্ভুক্ত থাকে।</b>\n<b>Example:</b> <code>+13124562345, +9171828181889</code>")
     if phone_number_msg.text=='/cancel':
         return await phone_number_msg.reply('<b>process cancelled !</b>')
     phone_number = phone_number_msg.text
@@ -61,7 +61,7 @@ async def main(bot: Client, message: Message):
     await phone_number_msg.reply("Sending OTP...")
     try:
         code = await client.send_code(phone_number)
-        phone_code_msg = await bot.ask(user_id, "Please check for an OTP in official telegram account. If you got it, send OTP here after reading the below format. \n\nIf OTP is `12345`, **please send it as** `1 2 3 4 5`.\n\n**Enter /cancel to cancel The Procces**", filters=filters.text, timeout=600)
+        phone_code_msg = await bot.ask(user_id, "অফিসিয়াল টেলিগ্রাম অ্যাকাউন্টে একটি OTP আছে কিনা তা পরীক্ষা করে দেখুন। যদি আপনি এটি পেয়ে থাকেন, তাহলে নীচের ফর্ম্যাটটি পড়ার পরে এখানে OTP পাঠান. \n\nIf OTP is `12345`, **please send it as** `1 2 3 4 5`.\n\n**Enter /cancel to cancel The Procces**", filters=filters.text, timeout=600)
     except PhoneNumberInvalid:
         await phone_number_msg.reply('`PHONE_NUMBER` **is invalid.**')
         return
@@ -77,7 +77,7 @@ async def main(bot: Client, message: Message):
         await phone_code_msg.reply('**OTP is expired.**')
         return
     except SessionPasswordNeeded:
-        two_step_msg = await bot.ask(user_id, '**Your account has enabled two-step verification. Please provide the password.\n\nEnter /cancel to cancel The Procces**', filters=filters.text, timeout=300)
+        two_step_msg = await bot.ask(user_id, '**আপনার অ্যাকাউন্টে দুই-পদক্ষেপ যাচাইকরণ সক্ষম করা হয়েছে। দয়া করে পাসওয়ার্ডটি প্রদান করুন।.\n\nEnter /cancel to cancel The Procces**', filters=filters.text, timeout=300)
         if two_step_msg.text=='/cancel':
             return await two_step_msg.reply('<b>process cancelled !</b>')
         try:
@@ -104,7 +104,7 @@ async def main(bot: Client, message: Message):
             database.update_one({'_id': user_data['_id']}, {'$set': data})
     except Exception as e:
         return await message.reply_text(f"<b>ERROR IN LOGIN:</b> `{e}`")
-    await bot.send_message(message.from_user.id, "<b>Account Login Successfully.\n\nIf You Get Any Error Related To AUTH KEY Then /logout and /login again</b>")
+    await bot.send_message(message.from_user.id, "<b>অ্যাকাউন্ট লগইন সফলভাবে.\n\nIf আপনি AUTH KEY সম্পর্কিত যেকোনো ত্রুটি পাবেন তাহলে /logout and /login again</b>")
 
 
 # Don't Remove Credit Tg - @VJ_Botz

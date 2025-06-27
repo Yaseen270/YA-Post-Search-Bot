@@ -25,7 +25,7 @@ class script(object):
 
 ♨️ এর সাথে সংযোগ চ্যানেল তালিকা পান - /connections</b>"""
 
-    সম্পর্কিত = """<b>╭━━━━━━━❰ [সম্পর্কিত](https://t.me/YABOTZ) ❱━━━━━━━➣
+    ABOUT = """<b>╭━━━━━━━❰ [ABOUT](https://t.me/YABOTZ) ❱━━━━━━━➣
 
 ┣ ✯ আমার নাম:  {}
 ┣ ✯ মালিক: <a href='https://t.me/YABOTZ'>YA Bᴏᴛᴢ</a>
